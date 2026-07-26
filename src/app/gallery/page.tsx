@@ -1,0 +1,48 @@
+import type { Metadata } from "next";
+import GalleryClient from "@/components/gallery-client";
+import { paintings } from "@/lib/paintings";
+import { siteConfig } from "@/lib/site-config";
+
+const title = "Gallery — 23 Original Oil Paintings by Komal Hira";
+const description =
+  "Browse the full collection of Komal Hira's oil-on-canvas paintings: abstract biomorphic assemblages, diptychs, and pieces held in permanent hotel collections.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: "/gallery/" },
+  openGraph: {
+    title,
+    description,
+    url: `${siteConfig.url}gallery/`,
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+};
+
+export default function GalleryPage() {
+  return (
+    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+      <header className="mb-12 max-w-2xl">
+        <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
+          Gallery
+        </p>
+        <h1 className="font-display mt-3 text-4xl text-[var(--ink)] sm:text-5xl">
+          The full collection
+        </h1>
+        <p className="mt-4 text-[var(--ink-soft)]">
+          {paintings.length} paintings in oil on canvas, spanning solo
+          compositions and diptychs from 2022 to 2024. Select any piece for a
+          full view, medium, and dimensions.
+        </p>
+      </header>
+
+      <GalleryClient paintings={paintings} />
+    </section>
+  );
+}

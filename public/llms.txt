@@ -1,0 +1,19 @@
+# Komal Hira — Visual Artist
+
+> Portfolio site for Komal Hira, a Lahore, Pakistan-based visual artist working in oil on canvas. Her paintings are abstract biomorphic assemblages of shapes and symbols, drawn from memory and feeling.
+
+## Pages
+
+- [Home](/): Introduction, artist statement excerpt, selected works.
+- [Gallery](/gallery/): Full collection of 23 original oil-on-canvas paintings with title, medium, dimensions, year, and collection info for each.
+- [About](/about/): Full biography, artist statement, education (MFA Visual Arts, M.A Painting), skillset, professional experience, commissions, exhibition history since 2015, and workshops/certifications.
+- [Contact](/contact/): Email and phone for commissions and exhibition inquiries.
+
+## Facts
+
+- Name: Komal Hira
+- Role: Visual Artist
+- Location: Lahore, Pakistan
+- Medium: Oil on canvas, mixed media, calligraphy, mosaic
+- Education: MFA Visual Arts (2022) and M.A Painting (2018), College of Art & Design, University of Punjab
+- Contact: Komalrasheed44@gmail.com
