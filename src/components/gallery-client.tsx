@@ -55,7 +55,7 @@ export default function GalleryClient({
             aria-label={`Open ${painting.title} in full view`}
           >
             <div
-              className="relative flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--line)]/70 p-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-xl"
+              className="relative flex items-center justify-center overflow-hidden rounded-2xl border border-[var(--line)]/70 p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:rotate-1 group-hover:shadow-xl"
               style={{
                 background: `linear-gradient(160deg, ${painting.accent}22, var(--card))`,
               }}
@@ -87,7 +87,7 @@ export default function GalleryClient({
           role="dialog"
           aria-modal="true"
           aria-label={`${active.title} — full view`}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          className="animate-modal-in fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
           onClick={close}
         >
           <button
@@ -123,7 +123,8 @@ export default function GalleryClient({
           </button>
 
           <div
-            className="flex max-h-[90vh] w-full max-w-4xl flex-col items-center gap-4"
+            key={active.slug}
+            className="animate-modal-content-in flex max-h-[90vh] w-full max-w-4xl flex-col items-center gap-4"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative flex max-h-[70vh] w-full items-center justify-center">

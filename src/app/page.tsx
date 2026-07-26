@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import AmbientBlobs from "@/components/ambient-blobs";
+import Marquee from "@/components/marquee";
 import Reveal from "@/components/reveal";
 import { paintings } from "@/lib/paintings";
-import { bio, education, exhibitions } from "@/lib/profile";
+import { bio, education, exhibitions, skillset } from "@/lib/profile";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -25,22 +27,14 @@ export const metadata: Metadata = {
 };
 
 const hero = paintings.find((p) => p.slug === "redolence")!;
-const featured = paintings.filter((p) =>
-  [
-    "the-beginning",
-    "the-blue-sky",
-    "moment-of-feel-ii",
-    "mindfulness",
-    "solace",
-    "untitled-amber-boomerang",
-  ].includes(p.slug),
-);
 
 export default function HomePage() {
   return (
     <>
-      <section className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-28">
-        <div>
+      <section className="relative mx-auto grid max-w-6xl gap-10 overflow-hidden px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-28">
+        <AmbientBlobs colors={["var(--accent)", "var(--olive)"]} />
+
+        <Reveal>
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
             {siteConfig.role} · {siteConfig.location}
           </p>
@@ -64,7 +58,7 @@ export default function HomePage() {
               Artist CV
             </Link>
           </div>
-        </div>
+        </Reveal>
 
         <div
           className="relative flex items-center justify-center rounded-[2rem] border border-[var(--line)]/70 p-8 sm:p-12"
@@ -72,18 +66,22 @@ export default function HomePage() {
             background: `radial-gradient(circle at 30% 20%, ${hero.accent}33, var(--bg-alt))`,
           }}
         >
-          <Image
-            src={hero.image}
-            alt={hero.alt}
-            width={hero.width}
-            height={hero.height}
-            sizes="(max-width: 1024px) 80vw, 40vw"
-            preload
-            quality={85}
-            className="h-auto w-full max-w-md drop-shadow-2xl"
-          />
+          <div className="animate-float w-full max-w-md">
+            <Image
+              src={hero.image}
+              alt={hero.alt}
+              width={hero.width}
+              height={hero.height}
+              sizes="(max-width: 1024px) 80vw, 40vw"
+              preload
+              quality={85}
+              className="h-auto w-full drop-shadow-2xl"
+            />
+          </div>
         </div>
       </section>
+
+      <Marquee items={skillset} />
 
       <section className="border-y border-[var(--line)]/70 bg-[var(--bg-alt)]">
         <Reveal>
@@ -104,27 +102,27 @@ export default function HomePage() {
         <Reveal>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <h2 className="font-display text-3xl text-[var(--ink)] sm:text-4xl">
-              Selected works
+              The collection
             </h2>
             <Link
               href="/gallery/"
               className="text-sm uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
             >
-              See all 23 paintings →
+              Open full-view gallery →
             </Link>
           </div>
         </Reveal>
 
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3">
-          {featured.map((painting, i) => (
-            <Reveal key={painting.slug} delay={i * 80}>
+          {paintings.map((painting, i) => (
+            <Reveal key={painting.slug} delay={(i % 6) * 80}>
               <Link
                 href="/gallery/"
                 className="group block"
                 aria-label={`${painting.title} — view in gallery`}
               >
                 <div
-                  className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-[var(--line)]/70 p-5 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-xl"
+                  className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-[var(--line)]/70 p-5 transition-all duration-300 group-hover:-translate-y-1 group-hover:rotate-1 group-hover:shadow-xl"
                   style={{
                     background: `linear-gradient(160deg, ${painting.accent}22, var(--card))`,
                   }}

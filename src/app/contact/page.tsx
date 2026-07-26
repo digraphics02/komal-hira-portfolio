@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import AmbientBlobs from "@/components/ambient-blobs";
+import ContactForm from "@/components/contact-form";
 import Reveal from "@/components/reveal";
 import { siteConfig } from "@/lib/site-config";
 
@@ -26,7 +28,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-24">
+    <section className="relative mx-auto max-w-3xl overflow-hidden px-5 py-16 sm:px-8 sm:py-24">
+      <AmbientBlobs colors={["var(--olive)", "var(--accent)"]} />
       <Reveal>
         <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
           Contact
@@ -42,7 +45,13 @@ export default function ContactPage() {
       </Reveal>
 
       <Reveal delay={100}>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
+        <div className="mt-12">
+          <ContactForm email={siteConfig.email} />
+        </div>
+      </Reveal>
+
+      <Reveal delay={150}>
+        <div className="mt-6 grid gap-5 sm:grid-cols-3">
           <a
             href={`mailto:${siteConfig.email}`}
             className="group rounded-2xl border border-[var(--line)]/70 bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]"
@@ -50,7 +59,7 @@ export default function ContactPage() {
             <p className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
               Email
             </p>
-            <p className="font-display mt-2 text-xl text-[var(--ink)] group-hover:text-[var(--accent)]">
+            <p className="font-display mt-2 break-all text-lg text-[var(--ink)] group-hover:text-[var(--accent)]">
               {siteConfig.email}
             </p>
           </a>
@@ -64,6 +73,20 @@ export default function ContactPage() {
             </p>
             <p className="font-display mt-2 text-xl text-[var(--ink)] group-hover:text-[var(--accent)]">
               {siteConfig.phone}
+            </p>
+          </a>
+
+          <a
+            href={`https://wa.me/${siteConfig.phone.replace(/[^\d]/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl border border-[var(--line)]/70 bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]"
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
+              WhatsApp
+            </p>
+            <p className="font-display mt-2 text-xl text-[var(--ink)] group-hover:text-[var(--accent)]">
+              Message directly
             </p>
           </a>
         </div>

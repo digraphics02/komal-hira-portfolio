@@ -17,7 +17,7 @@ export default async function Image() {
           justifyContent: "center",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #201b14 0%, #3a3120 55%, #6b4a2f 100%)",
+            "linear-gradient(135deg, #15111c 0%, #241f2b 55%, #7c2d4a 100%)",
         }}
       >
         <div
@@ -25,7 +25,7 @@ export default async function Image() {
             fontSize: 26,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#e08c58",
+            color: "#e08aa8",
             display: "flex",
           }}
         >
@@ -35,7 +35,7 @@ export default async function Image() {
           style={{
             marginTop: 24,
             fontSize: 96,
-            color: "#faf6ee",
+            color: "#f5f1ea",
             display: "flex",
           }}
         >
@@ -45,7 +45,7 @@ export default async function Image() {
           style={{
             marginTop: 28,
             fontSize: 28,
-            color: "#d9cfba",
+            color: "#cbbfc9",
             maxWidth: 900,
             display: "flex",
           }}

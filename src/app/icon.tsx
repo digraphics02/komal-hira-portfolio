@@ -10,13 +10,13 @@ export default function Icon() {
         style={{
           fontSize: 20,
           fontWeight: 600,
-          background: "#201b14",
+          background: "#15111c",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#e08c58",
+          color: "#e08aa8",
         }}
       >
         K

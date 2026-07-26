@@ -40,7 +40,7 @@ export default function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-sm uppercase tracking-[0.15em] transition-colors hover:text-[var(--accent)] ${
+                className={`link-underline text-sm uppercase tracking-[0.15em] transition-colors hover:text-[var(--accent)] ${
                   active ? "text-[var(--accent)]" : "text-[var(--ink-soft)]"
                 }`}
               >

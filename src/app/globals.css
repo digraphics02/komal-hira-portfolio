@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #faf6ee;
-  --bg-alt: #f1ead9;
-  --ink: #201b14;
-  --ink-soft: #55503f;
-  --line: #ddd2ba;
-  --accent: #b3592f;
-  --accent-soft: #d98a52;
-  --olive: #6b7745;
+  --bg: #f5f1ea;
+  --bg-alt: #ece1d2;
+  --ink: #241f2b;
+  --ink-soft: #5d5566;
+  --line: #ddccc0;
+  --accent: #7c2d4a;
+  --accent-soft: #b0577a;
+  --olive: #3f6b5e;
   --card: #ffffff;
 }
 
 :root[data-theme="dark"] {
-  --bg: #15130f;
-  --bg-alt: #1d1a14;
-  --ink: #f3efe4;
-  --ink-soft: #c7bfa9;
-  --line: #35301f;
-  --accent: #e08c58;
-  --accent-soft: #b3592f;
-  --olive: #9aa876;
-  --card: #1d1a14;
+  --bg: #15111c;
+  --bg-alt: #1d1826;
+  --ink: #f2ece0;
+  --ink-soft: #c9bfd6;
+  --line: #332a40;
+  --accent: #e08aa8;
+  --accent-soft: #b0577a;
+  --olive: #7fb39d;
+  --card: #1d1826;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15130f;
-    --bg-alt: #1d1a14;
-    --ink: #f3efe4;
-    --ink-soft: #c7bfa9;
-    --line: #35301f;
-    --accent: #e08c58;
-    --accent-soft: #b3592f;
-    --olive: #9aa876;
-    --card: #1d1a14;
+    --bg: #15111c;
+    --bg-alt: #1d1826;
+    --ink: #f2ece0;
+    --ink-soft: #c9bfd6;
+    --line: #332a40;
+    --accent: #e08aa8;
+    --accent-soft: #b0577a;
+    --olive: #7fb39d;
+    --card: #1d1826;
   }
 }
 
@@ -73,6 +73,8 @@ body {
   text-wrap: balance;
 }
 
+/* Scroll reveal */
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -92,10 +94,143 @@ body {
   animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Gentle floating motion, used on hero artwork */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(0.6deg);
+  }
+}
+
+.animate-float {
+  animation: float 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Ambient drifting colour blobs, decorative background accents */
+
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, -8%) scale(1.12);
+  }
+  66% {
+    transform: translate(-8%, 6%) scale(0.94);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-7%, 9%) scale(1.08);
+  }
+  75% {
+    transform: translate(9%, -5%) scale(0.96);
+  }
+}
+
+.animate-drift-a {
+  animation: drift-a 22s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: drift-b 27s ease-in-out infinite;
+}
+
+/* Infinite marquee ribbon */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Lightbox entrance */
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modal-in 0.25s ease-out forwards;
+}
+
+.animate-modal-content-in {
+  animation: modal-content-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Underline sweep for nav links */
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover::after,
+.link-underline[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     animation: none;
+  }
+  .animate-float,
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-marquee {
+    animation: none;
+  }
+  .animate-modal-in,
+  .animate-modal-content-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
   html {
     scroll-behavior: auto;

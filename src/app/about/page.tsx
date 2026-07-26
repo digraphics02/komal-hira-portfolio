@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import AmbientBlobs from "@/components/ambient-blobs";
 import Reveal from "@/components/reveal";
 import {
   artistStatement,
@@ -37,9 +38,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+    <section className="relative mx-auto max-w-6xl overflow-hidden px-5 py-14 sm:px-8 sm:py-20">
+      <AmbientBlobs colors={["var(--accent)", "var(--olive)"]} />
       <Reveal>
-        <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
+        <div className="relative grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
           <div className="mx-auto w-48 sm:w-56 lg:mx-0 lg:w-full">
             <Image
               src="/images/profile.jpg"

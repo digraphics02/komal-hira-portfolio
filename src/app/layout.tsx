@@ -4,6 +4,7 @@ import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import ScrollTopButton from "@/components/scroll-top-button";
+import WhatsappButton from "@/components/whatsapp-button";
 import { isIndexable, siteConfig } from "@/lib/site-config";
 
 const display = Fraunces({
@@ -27,8 +28,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf6ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#15130f" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f1ea" },
+    { media: "(prefers-color-scheme: dark)", color: "#15111c" },
   ],
 };
 
@@ -74,6 +75,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <ScrollTopButton />
+        <WhatsappButton />
       </body>
     </html>
   );

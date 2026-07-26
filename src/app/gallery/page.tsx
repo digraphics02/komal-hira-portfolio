@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AmbientBlobs from "@/components/ambient-blobs";
 import GalleryClient from "@/components/gallery-client";
 import { paintings } from "@/lib/paintings";
 import { siteConfig } from "@/lib/site-config";
@@ -27,8 +28,9 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
-      <header className="mb-12 max-w-2xl">
+    <section className="relative mx-auto max-w-6xl overflow-hidden px-5 py-14 sm:px-8 sm:py-20">
+      <AmbientBlobs colors={["var(--olive)", "var(--accent)"]} />
+      <header className="relative mb-12 max-w-2xl">
         <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
           Gallery
         </p>
