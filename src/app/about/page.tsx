@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import AmbientBlobs from "@/components/ambient-blobs";
 import Reveal from "@/components/reveal";
 import {
@@ -141,21 +142,44 @@ export default function AboutPage() {
 
       <Reveal>
         <div className="mt-16">
-          <h2 className="font-display text-2xl text-[var(--ink)]">
-            Commissions
-          </h2>
-          <p className="mt-2 text-sm text-[var(--ink-soft)]">
-            Lahore, 2015–2023
-          </p>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {commissions.map((item) => (
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="font-display text-2xl text-[var(--ink)]">
+                Commissions
+              </h2>
+              <p className="mt-2 text-sm text-[var(--ink-soft)]">
+                Lahore, 2015–2023
+              </p>
+            </div>
+          </div>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {commissions.map((item, i) => (
               <li
                 key={item}
-                className="rounded-xl border border-[var(--line)]/70 bg-[var(--card)] p-4 text-sm leading-relaxed text-[var(--ink-soft)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:shadow-md"
+                className="group relative overflow-hidden rounded-xl border border-[var(--line)]/70 bg-[var(--card)] p-5 text-sm leading-relaxed text-[var(--ink-soft)] transition-all hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-lg"
               >
-                {item}
+                <span className="font-display block text-2xl text-[var(--accent)]/40 transition-colors group-hover:text-[var(--accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-2 text-[var(--ink)]">{item}</p>
               </li>
             ))}
+            <li>
+              <Link
+                href="/contact/"
+                className="flex h-full flex-col justify-between rounded-xl border border-dashed border-[var(--accent)]/50 bg-[var(--bg-alt)] p-5 text-sm leading-relaxed transition-all hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg"
+              >
+                <span className="font-display text-2xl text-[var(--accent)]">
+                  +
+                </span>
+                <p className="mt-2 font-medium text-[var(--ink)]">
+                  Have something else in mind?
+                  <span className="mt-1 block text-[var(--accent)]">
+                    Get in touch →
+                  </span>
+                </p>
+              </Link>
+            </li>
           </ul>
         </div>
       </Reveal>

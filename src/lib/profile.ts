@@ -51,6 +51,7 @@ export const professionalExperience = [
 export const exhibitions = [
   { year: "2026", detail: '"The Many Facets of Eve" in Muse Art Gallery' },
   { year: "2025", detail: '"The Many Facets of Eve" in Muse Art Gallery' },
+  { year: "2025", detail: "Annual showcase in Tagheer Art Gallery" },
   { year: "2024", detail: '3-Person Show "Echoes of the Infinite" in Numaishgah' },
   { year: "2024", detail: 'E-exhibition "Observe and Absorb"' },
   { year: "2023", detail: '"Broadcast" volume 1 in O Art Space' },
