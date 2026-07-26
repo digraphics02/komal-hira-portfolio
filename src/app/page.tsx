@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AmbientBlobs from "@/components/ambient-blobs";
+import ArtDecor from "@/components/art-decor";
 import Marquee from "@/components/marquee";
 import Reveal from "@/components/reveal";
 import { paintings } from "@/lib/paintings";
@@ -33,6 +34,7 @@ export default function HomePage() {
     <>
       <section className="relative mx-auto grid max-w-6xl gap-10 overflow-hidden px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-28">
         <AmbientBlobs colors={["var(--accent)", "var(--olive)"]} />
+        <ArtDecor />
 
         <Reveal>
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AmbientBlobs from "@/components/ambient-blobs";
+import ArtDecor from "@/components/art-decor";
 import ContactForm from "@/components/contact-form";
 import Reveal from "@/components/reveal";
 import { siteConfig } from "@/lib/site-config";
@@ -30,6 +31,7 @@ export default function ContactPage() {
   return (
     <section className="relative mx-auto max-w-3xl overflow-hidden px-5 py-16 sm:px-8 sm:py-24">
       <AmbientBlobs colors={["var(--olive)", "var(--accent)"]} />
+      <ArtDecor />
       <Reveal>
         <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
           Contact

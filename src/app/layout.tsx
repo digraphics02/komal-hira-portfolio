@@ -5,6 +5,7 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import ScrollTopButton from "@/components/scroll-top-button";
 import WhatsappButton from "@/components/whatsapp-button";
+import CustomCursor from "@/components/custom-cursor";
 import { isIndexable, siteConfig } from "@/lib/site-config";
 
 const display = Fraunces({
@@ -76,6 +77,7 @@ export default function RootLayout({
         <SiteFooter />
         <ScrollTopButton />
         <WhatsappButton />
+        <CustomCursor />
       </body>
     </html>
   );

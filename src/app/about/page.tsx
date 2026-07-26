@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AmbientBlobs from "@/components/ambient-blobs";
+import ArtDecor from "@/components/art-decor";
 import Reveal from "@/components/reveal";
 import {
   artistStatement,
@@ -41,6 +42,7 @@ export default function AboutPage() {
   return (
     <section className="relative mx-auto max-w-6xl overflow-hidden px-5 py-14 sm:px-8 sm:py-20">
       <AmbientBlobs colors={["var(--accent)", "var(--olive)"]} />
+      <ArtDecor />
       <Reveal>
         <div className="relative grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start lg:gap-16">
           <div className="mx-auto w-48 sm:w-56 lg:mx-0 lg:w-full">
