@@ -84,11 +84,11 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl text-[var(--ink)]">
               Education
             </h2>
-            <ul className="mt-5 space-y-5">
+            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
               {education.map((item) => (
                 <li
                   key={`${item.school}-${item.period}`}
-                  className="border-l-2 border-[var(--accent)]/50 pl-4"
+                  className="relative -ml-px rounded-r-lg py-3 pl-6 transition-colors before:absolute before:-left-[7px] before:top-[1.35rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
                 >
                   <p className="font-medium text-[var(--ink)]">
                     {item.credential}
@@ -96,7 +96,7 @@ export default function AboutPage() {
                   <p className="text-sm text-[var(--ink-soft)]">
                     {item.school}
                   </p>
-                  <p className="text-xs uppercase tracking-wide text-[var(--ink-soft)]">
+                  <p className="text-xs uppercase tracking-wide text-[var(--accent)]">
                     {item.period}
                   </p>
                 </li>
@@ -114,7 +114,7 @@ export default function AboutPage() {
               {skillset.map((skill) => (
                 <li
                   key={skill}
-                  className="rounded-full border border-[var(--line)] px-4 py-1.5 text-sm text-[var(--ink-soft)]"
+                  className="cursor-default rounded-full border border-[var(--line)] px-4 py-1.5 text-sm text-[var(--ink-soft)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-sm"
                 >
                   {skill}
                 </li>
@@ -124,11 +124,11 @@ export default function AboutPage() {
             <h2 className="font-display mt-10 text-2xl text-[var(--ink)]">
               Professional experience
             </h2>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-5 space-y-1">
               {professionalExperience.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 text-sm leading-relaxed text-[var(--ink-soft)]"
+                  className="-ml-3 flex gap-3 rounded-lg px-3 py-2 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors hover:bg-[var(--bg-alt)]"
                 >
                   <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--accent)]" />
                   {item}
@@ -151,7 +151,7 @@ export default function AboutPage() {
             {commissions.map((item) => (
               <li
                 key={item}
-                className="rounded-xl border border-[var(--line)]/70 bg-[var(--card)] p-4 text-sm leading-relaxed text-[var(--ink-soft)]"
+                className="rounded-xl border border-[var(--line)]/70 bg-[var(--card)] p-4 text-sm leading-relaxed text-[var(--ink-soft)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)]/50 hover:shadow-md"
               >
                 {item}
               </li>
@@ -166,11 +166,11 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl text-[var(--ink)]">
               Exhibitions
             </h2>
-            <ol className="mt-5 space-y-3">
+            <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
               {exhibitions.map((item, i) => (
                 <li
                   key={`${item.year}-${i}`}
-                  className="flex gap-4 text-sm leading-relaxed"
+                  className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
                 >
                   <span className="w-12 flex-none font-medium text-[var(--accent)]">
                     {item.year}
@@ -187,11 +187,11 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl text-[var(--ink)]">
               Workshops &amp; certifications
             </h2>
-            <ol className="mt-5 space-y-3">
+            <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
               {certifications.map((item, i) => (
                 <li
                   key={`${item.year}-${i}`}
-                  className="flex gap-4 text-sm leading-relaxed"
+                  className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
                 >
                   <span className="w-12 flex-none font-medium text-[var(--accent)]">
                     {item.year}

@@ -180,7 +180,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16 text-center sm:px-8 sm:py-24">
+      <section className="relative mx-auto max-w-6xl overflow-hidden px-5 py-16 text-center sm:px-8 sm:py-24">
+        <AmbientBlobs colors={["var(--olive)", "var(--accent)"]} />
         <Reveal>
           <h2 className="font-display text-3xl text-[var(--ink)] sm:text-4xl">
             Available for commissions and exhibitions
@@ -189,16 +190,24 @@ export default function HomePage() {
             Portraits, still life, abstract landscapes and large-scale
             commissioned oil paintings.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              href={`mailto:${siteConfig.email}`}
+          <div className="relative mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact/"
               className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm uppercase tracking-widest text-white transition-transform hover:-translate-y-0.5"
             >
               Email {siteConfig.name.split(" ")[0]}
+            </Link>
+            <a
+              href={`https://wa.me/${siteConfig.phone.replace(/[^\d]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-[var(--line)] px-6 py-3 text-sm uppercase tracking-widest text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            >
+              WhatsApp
             </a>
             <Link
               href="/contact/"
-              className="rounded-full border border-[var(--line)] px-6 py-3 text-sm uppercase tracking-widest text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="rounded-full border border-[var(--line)] px-6 py-3 text-sm uppercase tracking-widest text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               Contact details
             </Link>
