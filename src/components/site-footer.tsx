@@ -29,6 +29,14 @@ export default function SiteFooter() {
           >
             {siteConfig.phone}
           </a>
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--accent)]"
+          >
+            @komal.hiraa
+          </a>
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl flex-col-reverse gap-2 border-t border-[var(--line)]/60 px-5 py-4 text-xs text-[var(--ink-soft)] sm:flex-row sm:items-center sm:justify-between sm:px-8">
@@ -36,6 +44,9 @@ export default function SiteFooter() {
         <nav className="flex gap-4">
           <Link href="/gallery/" className="hover:text-[var(--accent)]">
             Gallery
+          </Link>
+          <Link href="/commissions/" className="hover:text-[var(--accent)]">
+            Commissions
           </Link>
           <Link href="/about/" className="hover:text-[var(--accent)]">
             About

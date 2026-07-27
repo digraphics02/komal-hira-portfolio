@@ -46,6 +46,7 @@ export default function RootLayout({
     jobTitle: siteConfig.role,
     email: `mailto:${siteConfig.email}`,
     url: siteConfig.url,
+    sameAs: [siteConfig.instagram],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lahore",

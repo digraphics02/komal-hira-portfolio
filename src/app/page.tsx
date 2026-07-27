@@ -5,6 +5,7 @@ import AmbientBlobs from "@/components/ambient-blobs";
 import ArtDecor from "@/components/art-decor";
 import Marquee from "@/components/marquee";
 import Reveal from "@/components/reveal";
+import { commissions } from "@/lib/commissions";
 import { paintings } from "@/lib/paintings";
 import { bio, education, exhibitions, skillset } from "@/lib/profile";
 import { siteConfig } from "@/lib/site-config";
@@ -147,7 +148,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--line)]/70 bg-[var(--bg-alt)]">
+      <section className="border-t border-[var(--line)]/70 bg-[var(--bg-alt)] py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <Reveal>
+            <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
+                  {commissions.length} pieces
+                </p>
+                <h2 className="font-display mt-2 text-3xl text-[var(--ink)] sm:text-4xl">
+                  Commission work
+                </h2>
+                <p className="mt-3 max-w-xl text-[var(--ink-soft)]">
+                  Private and client pieces — portraits, calligraphy, still
+                  life, and custom commissions that have gone home with their
+                  owners.
+                </p>
+              </div>
+              <Link
+                href="/commissions/"
+                className="text-sm uppercase tracking-[0.2em] text-[var(--accent)] hover:underline"
+              >
+                See all commission work →
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+            {commissions.slice(0, 6).map((piece, i) => (
+              <Reveal key={piece.slug} delay={i * 60}>
+                <Link
+                  href="/commissions/"
+                  className="group block aspect-[3/4] overflow-hidden rounded-xl border border-[var(--line)]/70 bg-[var(--card)]"
+                  aria-label="View commission work gallery"
+                >
+                  <Image
+                    src={piece.image}
+                    alt={`Commissioned artwork by Komal Hira, piece ${i + 1}`}
+                    width={piece.width}
+                    height={piece.height}
+                    sizes="(max-width: 640px) 30vw, 15vw"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--line)]/70">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 sm:py-20 md:grid-cols-3">
           <Reveal>
             <div>

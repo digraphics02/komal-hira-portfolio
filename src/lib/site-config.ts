@@ -18,6 +18,7 @@ export const siteConfig = {
   location: "Lahore, Pakistan",
   email: "Komalrasheed44@gmail.com",
   phone: "+92-333-3514162",
+  instagram: "https://www.instagram.com/komal.hiraa/",
   url,
   description:
     "Komal Hira is a Lahore-based visual artist working in oil on canvas. Her paintings render abstract biomorphic assemblages of shapes and symbols, drawn from memory, fragrance, and feeling.",

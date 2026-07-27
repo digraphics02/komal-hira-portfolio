@@ -53,7 +53,7 @@ export default function ContactPage() {
       </Reveal>
 
       <Reveal delay={150}>
-        <div className="mt-6 grid gap-5 sm:grid-cols-3">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <a
             href={`mailto:${siteConfig.email}`}
             className="group rounded-2xl border border-[var(--line)]/70 bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]"
@@ -61,7 +61,7 @@ export default function ContactPage() {
             <p className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
               Email
             </p>
-            <p className="font-display mt-2 break-all text-lg text-[var(--ink)] group-hover:text-[var(--accent)]">
+            <p className="font-display mt-2 break-all text-base text-[var(--ink)] group-hover:text-[var(--accent)]">
               {siteConfig.email}
             </p>
           </a>
@@ -89,6 +89,20 @@ export default function ContactPage() {
             </p>
             <p className="font-display mt-2 text-xl text-[var(--ink)] group-hover:text-[var(--accent)]">
               Message directly
+            </p>
+          </a>
+
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl border border-[var(--line)]/70 bg-[var(--card)] p-6 transition-colors hover:border-[var(--accent)]"
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
+              Instagram
+            </p>
+            <p className="font-display mt-2 text-xl text-[var(--ink)] group-hover:text-[var(--accent)]">
+              @komal.hiraa
             </p>
           </a>
         </div>

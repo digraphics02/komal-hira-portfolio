@@ -7,6 +7,7 @@ import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { href: "/gallery/", label: "Gallery" },
+  { href: "/commissions/", label: "Commissions" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
 ];
@@ -48,6 +49,19 @@ export default function SiteHeader() {
               </Link>
             );
           })}
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${siteConfig.name} on Instagram`}
+            className="text-[var(--ink-soft)] transition-colors hover:text-[var(--accent)]"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+            </svg>
+          </a>
         </nav>
 
         <button
@@ -77,6 +91,14 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-3 text-sm uppercase tracking-[0.15em] text-[var(--ink-soft)]"
+          >
+            Instagram
+          </a>
         </nav>
       )}
     </header>
