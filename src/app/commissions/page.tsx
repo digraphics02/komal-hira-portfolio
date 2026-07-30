@@ -107,10 +107,10 @@ export default function CommissionsPage() {
             const backgroundIndex = index % roomBackgrounds.length;
             const frame =
               index % 3 === 0
-                ? "border-[3px] border-[#292724]"
+                ? "border-[6px] border-[#242321]"
                 : index % 3 === 1
-                  ? "border-2 border-[#e8e3da]"
-                  : "border border-black/20";
+                  ? "border-[7px] border-[#e2ddd3]"
+                  : "border-[6px] border-[#73583e]";
 
             return (
               <ZoomableMockup
