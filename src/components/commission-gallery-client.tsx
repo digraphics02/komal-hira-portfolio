@@ -45,25 +45,40 @@ export default function CommissionGalleryClient({
 
   return (
     <>
-      <div className="columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
-        {pieces.map((piece, index) => (
-          <button
-            key={piece.slug}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            className="group block w-full break-inside-avoid overflow-hidden rounded-xl border border-[var(--line)]/70 bg-[var(--card)] text-left transition-all hover:-translate-y-0.5 hover:shadow-lg"
-            aria-label={`Open commission piece ${index + 1} of ${pieces.length}`}
-          >
-            <Image
-              src={piece.image}
-              alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
-              width={piece.width}
-              height={piece.height}
-              sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-              className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-          </button>
-        ))}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+        {pieces.map((piece, index) => {
+          const ratio = piece.width / piece.height;
+          const isLandscape = ratio > 1.25;
+          const isSquare = ratio >= 0.9 && ratio <= 1.25;
+
+          return (
+            <button
+              key={piece.slug}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              className={`group relative block overflow-hidden rounded-md border border-[var(--line)]/70 bg-[var(--card)] text-left transition-all hover:-translate-y-0.5 hover:shadow-lg ${
+                isLandscape
+                  ? "col-span-2 aspect-[3/2]"
+                  : isSquare
+                    ? "aspect-square"
+                    : "aspect-[4/5]"
+              }`}
+              aria-label={`Open commission piece ${index + 1} of ${pieces.length}`}
+            >
+              <Image
+                src={piece.image}
+                alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
+                fill
+                sizes={
+                  isLandscape
+                    ? "(max-width: 640px) 95vw, (max-width: 1024px) 62vw, 46vw"
+                    : "(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 22vw"
+                }
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </button>
+          );
+        })}
       </div>
 
       {active && (
