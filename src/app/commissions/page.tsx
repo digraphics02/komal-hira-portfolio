@@ -104,7 +104,17 @@ export default function CommissionsPage() {
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
           {remainingMockups.map((piece, index) => {
-            const backgroundIndex = index % roomBackgrounds.length;
+            const ratio = piece.width / piece.height;
+            const backgroundIndex =
+              ratio > 1.25
+                ? index % 2 === 0
+                  ? 1
+                  : 2
+                : ratio < 0.68
+                  ? index % 2 === 0
+                    ? 0
+                    : 3
+                  : index % roomBackgrounds.length;
             const frame =
               index % 3 === 0
                 ? "border-[6px] border-[#242321]"

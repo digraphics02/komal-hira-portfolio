@@ -25,7 +25,15 @@ export default function ZoomableMockup({
   const [open, setOpen] = useState(false);
   const ratio = artwork ? artwork.width / artwork.height : 0;
   const artworkWidth =
-    ratio > 1.25 ? "w-[46%]" : ratio >= 0.9 ? "w-[34%]" : "w-[25%]";
+    ratio > 2
+      ? "w-[58%]"
+      : ratio > 1.25
+        ? "w-[42%]"
+        : ratio >= 0.9
+          ? "w-[30%]"
+          : ratio >= 0.68
+            ? "w-[23%]"
+            : "w-[20%]";
 
   useEffect(() => {
     if (!open) return;
@@ -58,7 +66,7 @@ export default function ZoomableMockup({
       />
       {artwork && (
         <div
-          className={`absolute left-1/2 top-[39%] ${artworkWidth} ${frameClassName} -translate-x-1/2 -translate-y-1/2 bg-[#f4f1ea] p-[1.4%] shadow-[0_12px_24px_rgba(0,0,0,0.38)]`}
+          className={`absolute left-1/2 top-[37%] ${artworkWidth} ${frameClassName} -translate-x-1/2 -translate-y-1/2 bg-[#f4f1ea] p-[1.2%] shadow-[0_12px_24px_rgba(0,0,0,0.38)]`}
           style={{ aspectRatio: `${artwork.width} / ${artwork.height}` }}
         >
           <div className="relative h-full w-full overflow-hidden border border-black/15 bg-white">
