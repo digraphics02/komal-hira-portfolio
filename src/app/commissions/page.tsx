@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import AmbientBlobs from "@/components/ambient-blobs";
 import ArtDecor from "@/components/art-decor";
 import CommissionGalleryClient from "@/components/commission-gallery-client";
+import ZoomableMockup from "@/components/zoomable-mockup";
 import { commissions } from "@/lib/commissions";
 import { siteConfig } from "@/lib/site-config";
 
@@ -76,34 +76,19 @@ export default function CommissionsPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <figure className="group relative aspect-[3/2] overflow-hidden rounded-md md:col-span-2">
-            <Image
-              src="/images/commission-mockups/abstract-dining-room.webp"
-              alt="Abstract commission displayed in a contemporary dining room"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1100px"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            />
-          </figure>
-          <figure className="group relative aspect-[3/2] overflow-hidden rounded-md">
-            <Image
-              src="/images/commission-mockups/calligraphy-living-room.webp"
-              alt="Blue calligraphy commission framed in a modern living room"
-              fill
-              sizes="(max-width: 768px) 100vw, 550px"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            />
-          </figure>
-          <figure className="group relative aspect-[3/2] overflow-hidden rounded-md">
-            <Image
-              src="/images/commission-mockups/leopard-lounge.webp"
-              alt="Leopard commission displayed as a large canvas in a modern lounge"
-              fill
-              sizes="(max-width: 768px) 100vw, 550px"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-            />
-          </figure>
+          <ZoomableMockup
+            background="/images/commission-mockups/abstract-dining-room.webp"
+            alt="Abstract commission displayed in a contemporary dining room"
+            className="md:col-span-2"
+          />
+          <ZoomableMockup
+            background="/images/commission-mockups/calligraphy-living-room.webp"
+            alt="Blue calligraphy commission framed in a modern living room"
+          />
+          <ZoomableMockup
+            background="/images/commission-mockups/leopard-lounge.webp"
+            alt="Leopard commission displayed as a large canvas in a modern lounge"
+          />
         </div>
       </div>
 
@@ -119,9 +104,6 @@ export default function CommissionsPage() {
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
           {remainingMockups.map((piece, index) => {
-            const ratio = piece.width / piece.height;
-            const artworkWidth =
-              ratio > 1.25 ? "w-[56%]" : ratio >= 0.9 ? "w-[39%]" : "w-[29%]";
             const backgroundIndex = index % roomBackgrounds.length;
             const frame =
               index % 3 === 0
@@ -131,33 +113,17 @@ export default function CommissionsPage() {
                   : "border border-black/20";
 
             return (
-              <figure
+              <ZoomableMockup
                 key={`interior-${piece.slug}`}
-                className="relative aspect-[3/2] overflow-hidden rounded-md bg-[#ddd8d0]"
-                aria-label={`Commission piece ${index + 1} displayed in an interior`}
-              >
-                <Image
-                  src={roomBackgrounds[backgroundIndex]}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 48vw, (max-width: 1024px) 31vw, 350px"
-                  className={`object-cover ${
-                    index % 2 === 0 ? "object-center" : "object-[48%_center]"
-                  }`}
-                />
-                <div
-                  className={`absolute left-1/2 top-[41%] ${artworkWidth} ${frame} -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-white shadow-[0_7px_16px_rgba(0,0,0,0.34)]`}
-                  style={{ aspectRatio: `${piece.width} / ${piece.height}` }}
-                >
-                  <Image
-                    src={piece.image}
-                    alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
-                    fill
-                    sizes="(max-width: 640px) 25vw, 180px"
-                    className="object-cover"
-                  />
-                </div>
-              </figure>
+                background={roomBackgrounds[backgroundIndex]}
+                alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
+                artwork={{
+                  src: piece.image,
+                  width: piece.width,
+                  height: piece.height,
+                }}
+                frameClassName={frame}
+              />
             );
           })}
         </div>

@@ -1,0 +1,115 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+type ZoomableMockupProps = {
+  alt: string;
+  background: string;
+  artwork?: {
+    src: string;
+    width: number;
+    height: number;
+  };
+  className?: string;
+  frameClassName?: string;
+};
+
+export default function ZoomableMockup({
+  alt,
+  background,
+  artwork,
+  className = "",
+  frameClassName = "border border-black/20",
+}: ZoomableMockupProps) {
+  const [open, setOpen] = useState(false);
+  const ratio = artwork ? artwork.width / artwork.height : 0;
+  const artworkWidth =
+    ratio > 1.25 ? "w-[56%]" : ratio >= 0.9 ? "w-[39%]" : "w-[29%]";
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const scene = (zoomed = false) => (
+    <div
+      className={`relative aspect-[3/2] w-full overflow-hidden bg-[#ddd8d0] ${
+        zoomed ? "rounded-md" : ""
+      }`}
+    >
+      <Image
+        src={background}
+        alt={artwork ? "" : alt}
+        fill
+        sizes={zoomed ? "95vw" : "(max-width: 640px) 48vw, 550px"}
+        className="object-cover"
+        priority={!artwork}
+      />
+      {artwork && (
+        <div
+          className={`absolute left-1/2 top-[41%] ${artworkWidth} ${frameClassName} -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-white shadow-[0_7px_16px_rgba(0,0,0,0.34)]`}
+          style={{ aspectRatio: `${artwork.width} / ${artwork.height}` }}
+        >
+          <Image
+            src={artwork.src}
+            alt={alt}
+            fill
+            sizes={zoomed ? "50vw" : "(max-width: 640px) 25vw, 180px"}
+            className="object-cover"
+          />
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className={`group block w-full overflow-hidden rounded-md text-left ${className}`}
+        aria-label={`Open ${alt}`}
+      >
+        <div className="transition-transform duration-700 group-hover:scale-[1.02]">
+          {scene()}
+        </div>
+      </button>
+
+      {open && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={alt}
+          className="fixed inset-0 z-[110] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close full view"
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-2xl text-white/80 hover:text-white"
+          >
+            &times;
+          </button>
+          <div
+            className="w-full max-w-6xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {scene(true)}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
