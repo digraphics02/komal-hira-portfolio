@@ -131,6 +131,10 @@ export default function CommissionsPage() {
                   src: piece.image,
                   width: piece.width,
                   height: piece.height,
+                  displayAspect:
+                    piece.slug === "commission-03" ? 0.81 : undefined,
+                  objectPosition:
+                    piece.slug === "commission-03" ? "50% 42%" : undefined,
                 }}
                 frameClassName={frame}
               />

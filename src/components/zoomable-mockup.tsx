@@ -10,6 +10,8 @@ type ZoomableMockupProps = {
     src: string;
     width: number;
     height: number;
+    displayAspect?: number;
+    objectPosition?: string;
   };
   className?: string;
   frameClassName?: string;
@@ -23,7 +25,9 @@ export default function ZoomableMockup({
   frameClassName = "border border-black/20",
 }: ZoomableMockupProps) {
   const [open, setOpen] = useState(false);
-  const ratio = artwork ? artwork.width / artwork.height : 0;
+  const ratio = artwork
+    ? artwork.displayAspect ?? artwork.width / artwork.height
+    : 0;
   const artworkWidth =
     ratio > 2
       ? "w-[58%]"
@@ -67,7 +71,7 @@ export default function ZoomableMockup({
       {artwork && (
         <div
           className={`absolute left-1/2 top-[37%] ${artworkWidth} ${frameClassName} -translate-x-1/2 -translate-y-1/2 bg-[#f4f1ea] p-[1.2%] shadow-[0_12px_24px_rgba(0,0,0,0.38)]`}
-          style={{ aspectRatio: `${artwork.width} / ${artwork.height}` }}
+          style={{ aspectRatio: ratio }}
         >
           <div className="relative h-full w-full overflow-hidden border border-black/15 bg-white">
             <Image
@@ -76,6 +80,7 @@ export default function ZoomableMockup({
               fill
               sizes={zoomed ? "45vw" : "(max-width: 640px) 22vw, 160px"}
               className="object-cover"
+              style={{ objectPosition: artwork.objectPosition ?? "center" }}
             />
           </div>
         </div>
