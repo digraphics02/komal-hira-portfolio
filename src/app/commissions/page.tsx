@@ -104,23 +104,55 @@ export default function CommissionsPage() {
           {commissions.map((piece, index) => {
             const ratio = piece.width / piece.height;
             const artworkWidth =
-              ratio > 1.25 ? "w-[52%]" : ratio >= 0.9 ? "w-[38%]" : "w-[29%]";
+              ratio > 1.25 ? "w-[58%]" : ratio >= 0.9 ? "w-[41%]" : "w-[31%]";
+            const hueFamilies = [34, 82, 148, 194, 12, 328];
+            const hue =
+              hueFamilies[index % hueFamilies.length] +
+              Math.floor(index / hueFamilies.length) * 3;
+            const wallLightness = 84 + (index % 4) * 2;
+            const floorLightness = 48 + (index % 5) * 4;
+            const consoleSide = index % 2 === 0 ? "left-[8%]" : "right-[8%]";
+            const vesselSide = index % 3 === 0 ? "left-[16%]" : "right-[16%]";
+            const frame =
+              index % 4 === 0
+                ? "border-[3px] border-[#2b2925]"
+                : index % 4 === 1
+                  ? "border-[5px] border-[#f1eee7]"
+                  : index % 4 === 2
+                    ? "border-2 border-[#765b3f]"
+                    : "border border-black/15";
 
             return (
               <figure
                 key={`mockup-${piece.slug}`}
-                className="relative aspect-[3/2] overflow-hidden rounded-md bg-[#e8e3dc]"
+                className="relative aspect-[3/2] overflow-hidden rounded-md"
                 aria-label={`Commission piece ${index + 1} displayed on an interior wall`}
+                style={{
+                  backgroundColor: `hsl(${hue} 18% ${wallLightness}%)`,
+                }}
               >
-                <Image
-                  src="/images/commission-mockups/gallery-wall-template.webp"
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 48vw, (max-width: 1024px) 31vw, 350px"
-                  className="object-cover"
+                <div
+                  className="absolute inset-x-0 bottom-0 h-[18%] border-t border-black/10"
+                  style={{
+                    backgroundColor: `hsl(${hue + 12} 20% ${floorLightness}%)`,
+                  }}
                 />
                 <div
-                  className={`absolute left-1/2 top-[43%] ${artworkWidth} -translate-x-1/2 -translate-y-1/2 overflow-hidden border border-black/15 bg-white shadow-[0_8px_18px_rgba(0,0,0,0.28)]`}
+                  className={`absolute bottom-[14%] ${consoleSide} h-[8%] w-[46%] border-b-4 border-black/20 ${
+                    index % 3 === 0
+                      ? "bg-[#262928]"
+                      : index % 3 === 1
+                        ? "bg-[#76583d]"
+                        : "bg-[#d6d0c5]"
+                  }`}
+                />
+                <div
+                  className={`absolute bottom-[22%] ${vesselSide} h-[8%] w-[6%] rounded-t-full ${
+                    index % 2 === 0 ? "bg-[#b9aa92]" : "bg-[#454a45]"
+                  }`}
+                />
+                <div
+                  className={`absolute left-1/2 top-[41%] ${artworkWidth} ${frame} -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-white shadow-[0_8px_18px_rgba(0,0,0,0.28)]`}
                   style={{ aspectRatio: `${piece.width} / ${piece.height}` }}
                 >
                   <Image
