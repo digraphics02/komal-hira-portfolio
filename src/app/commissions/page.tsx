@@ -90,6 +90,53 @@ export default function CommissionsPage() {
         </div>
       </div>
 
+      <div className="relative mb-16">
+        <div className="mb-6 max-w-xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
+            The complete collection
+          </p>
+          <h2 className="font-display mt-2 text-3xl text-[var(--ink)]">
+            Every commission, imagined at home
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {commissions.map((piece, index) => {
+            const ratio = piece.width / piece.height;
+            const artworkWidth =
+              ratio > 1.25 ? "w-[52%]" : ratio >= 0.9 ? "w-[38%]" : "w-[29%]";
+
+            return (
+              <figure
+                key={`mockup-${piece.slug}`}
+                className="relative aspect-[3/2] overflow-hidden rounded-md bg-[#e8e3dc]"
+                aria-label={`Commission piece ${index + 1} displayed on an interior wall`}
+              >
+                <Image
+                  src="/images/commission-mockups/gallery-wall-template.webp"
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 48vw, (max-width: 1024px) 31vw, 350px"
+                  className="object-cover"
+                />
+                <div
+                  className={`absolute left-1/2 top-[43%] ${artworkWidth} -translate-x-1/2 -translate-y-1/2 overflow-hidden border border-black/15 bg-white shadow-[0_8px_18px_rgba(0,0,0,0.28)]`}
+                  style={{ aspectRatio: `${piece.width} / ${piece.height}` }}
+                >
+                  <Image
+                    src={piece.image}
+                    alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 25vw, 180px"
+                    className="object-cover"
+                  />
+                </div>
+              </figure>
+            );
+          })}
+        </div>
+      </div>
+
       <CommissionGalleryClient pieces={commissions} />
     </section>
   );
