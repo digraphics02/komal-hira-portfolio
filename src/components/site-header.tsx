@@ -66,7 +66,20 @@ export default function SiteHeader() {
           <ThemeToggle />
         </nav>
 
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="flex items-center gap-3 sm:hidden">
+          <a
+            href={siteConfig.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${siteConfig.name} on Instagram`}
+            className="text-[var(--ink-soft)] transition-colors hover:text-[var(--accent)]"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.6" />
+              <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+            </svg>
+          </a>
           <ThemeToggle />
           <button
             type="button"
@@ -96,14 +109,6 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <a
-            href={siteConfig.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="py-3 text-sm uppercase tracking-[0.15em] text-[var(--ink-soft)]"
-          >
-            Instagram
-          </a>
         </nav>
       )}
     </header>
