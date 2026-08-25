@@ -153,36 +153,26 @@ export default function AboutPage() {
                 Lahore, 2015–2023
               </p>
             </div>
+            <Link
+              href="/contact/"
+              className="text-sm uppercase tracking-[0.15em] text-[var(--accent)] hover:underline"
+            >
+              Have something in mind? →
+            </Link>
           </div>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
             {commissions.map((item, i) => (
               <li
-                key={item}
-                className="group relative overflow-hidden rounded-xl border border-[var(--line)]/70 bg-[var(--card)] p-5 text-sm leading-relaxed text-[var(--ink-soft)] transition-all hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-lg"
+                key={`${item.year}-${i}`}
+                className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
               >
-                <span className="font-display block text-2xl text-[var(--accent)]/40 transition-colors group-hover:text-[var(--accent)]">
-                  {String(i + 1).padStart(2, "0")}
+                <span className="w-12 flex-none font-medium text-[var(--accent)]">
+                  {item.year}
                 </span>
-                <p className="mt-2 text-[var(--ink)]">{item}</p>
+                <span className="text-[var(--ink-soft)]">{item.detail}</span>
               </li>
             ))}
-            <li>
-              <Link
-                href="/contact/"
-                className="flex h-full flex-col justify-between rounded-xl border border-dashed border-[var(--accent)]/50 bg-[var(--bg-alt)] p-5 text-sm leading-relaxed transition-all hover:-translate-y-1 hover:border-[var(--accent)] hover:shadow-lg"
-              >
-                <span className="font-display text-2xl text-[var(--accent)]">
-                  +
-                </span>
-                <p className="mt-2 font-medium text-[var(--ink)]">
-                  Have something else in mind?
-                  <span className="mt-1 block text-[var(--accent)]">
-                    Get in touch →
-                  </span>
-                </p>
-              </Link>
-            </li>
-          </ul>
+          </ol>
         </div>
       </Reveal>
 

@@ -36,11 +36,18 @@ export const skillset = [
 ];
 
 export const commissions = [
-  "Abstract landscape painting in oil color",
-  'Project named "Punjabi Culture" — 6 paintings including landscapes, historical buildings and portrait',
-  "Portrait drawing",
-  "Still life oil paintings & water color",
-  "Vangogh replica painting of 14ft for Ahmad Mumtaz Studio",
+  {
+    year: "2023",
+    detail:
+      'Project named "Punjabi Culture" — 6 paintings including landscapes, historical buildings and portrait',
+  },
+  { year: "2021", detail: "Abstract landscape painting in oil color" },
+  { year: "2019", detail: "Still life oil paintings & water color" },
+  { year: "2017", detail: "Portrait drawing" },
+  {
+    year: "2015",
+    detail: "Vangogh replica painting of 14ft for Ahmad Mumtaz Studio",
+  },
 ];
 
 export const professionalExperience = [
