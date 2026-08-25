@@ -65,6 +65,11 @@ export default function RootLayout({
     <html lang="en" className={`${display.variable} ${sans.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),

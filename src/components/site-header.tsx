@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
@@ -62,22 +63,26 @@ export default function SiteHeader() {
               <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
             </svg>
           </a>
+          <ThemeToggle />
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label="Toggle navigation menu"
-          className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 sm:hidden"
-        >
-          <span
-            className={`h-px w-5 bg-[var(--ink)] transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`}
-          />
-          <span
-            className={`h-px w-5 bg-[var(--ink)] transition-transform ${open ? "-translate-y-[3px] -rotate-45" : ""}`}
-          />
-        </button>
+        <div className="flex items-center gap-2 sm:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Toggle navigation menu"
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5"
+          >
+            <span
+              className={`h-px w-5 bg-[var(--ink)] transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`}
+            />
+            <span
+              className={`h-px w-5 bg-[var(--ink)] transition-transform ${open ? "-translate-y-[3px] -rotate-45" : ""}`}
+            />
+          </button>
+        </div>
       </div>
 
       {open && (
