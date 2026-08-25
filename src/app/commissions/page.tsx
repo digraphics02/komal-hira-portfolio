@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import AmbientBlobs from "@/components/ambient-blobs";
 import ArtDecor from "@/components/art-decor";
 import CommissionGalleryClient from "@/components/commission-gallery-client";
-import ZoomableMockup from "@/components/zoomable-mockup";
 import { commissions } from "@/lib/commissions";
 import { siteConfig } from "@/lib/site-config";
 
@@ -47,33 +46,6 @@ export default function CommissionsPage() {
           owners. Select any piece for a full view.
         </p>
       </header>
-
-      <div className="relative mb-16">
-        <div className="mb-6 max-w-xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
-            In your space
-          </p>
-          <h2 className="font-display mt-2 text-3xl text-[var(--ink)]">
-            Art made for living with
-          </h2>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          <ZoomableMockup
-            background="/images/commission-mockups/abstract-dining-room.webp"
-            alt="Abstract commission displayed in a contemporary dining room"
-            className="md:col-span-2"
-          />
-          <ZoomableMockup
-            background="/images/commission-mockups/calligraphy-living-room.webp"
-            alt="Blue calligraphy commission framed in a modern living room"
-          />
-          <ZoomableMockup
-            background="/images/commission-mockups/leopard-lounge.webp"
-            alt="Leopard commission displayed as a large canvas in a modern lounge"
-          />
-        </div>
-      </div>
 
       <CommissionGalleryClient pieces={commissions} />
     </section>
