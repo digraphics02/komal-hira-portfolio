@@ -10,19 +10,6 @@ const title = "Commission Work — Komal Hira";
 const description =
   "A look at private and client commission work by Komal Hira: portraits, calligraphy, still life, and custom oil and watercolour pieces made for individual clients.";
 
-const featuredMockupSlugs = new Set([
-  "commission-05",
-  "commission-27",
-  "commission-39",
-]);
-
-const roomBackgrounds = [
-  "/images/commission-mockups/warm-grey-living.webp",
-  "/images/commission-mockups/olive-dining.webp",
-  "/images/commission-mockups/bright-gallery.webp",
-  "/images/commission-mockups/dark-lounge.webp",
-];
-
 export const metadata: Metadata = {
   title,
   description,
@@ -42,10 +29,6 @@ export const metadata: Metadata = {
 };
 
 export default function CommissionsPage() {
-  const remainingMockups = commissions.filter(
-    (piece) => !featuredMockupSlugs.has(piece.slug),
-  );
-
   return (
     <section className="relative mx-auto max-w-6xl overflow-hidden px-5 py-14 sm:px-8 sm:py-20">
       <AmbientBlobs colors={["var(--accent)", "var(--olive)"]} />
@@ -89,57 +72,6 @@ export default function CommissionsPage() {
             background="/images/commission-mockups/leopard-lounge.webp"
             alt="Leopard commission displayed as a large canvas in a modern lounge"
           />
-        </div>
-      </div>
-
-      <div className="relative mb-16">
-        <div className="mb-6 max-w-xl">
-          <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
-            More interiors
-          </p>
-          <h2 className="font-display mt-2 text-3xl text-[var(--ink)]">
-            The collection, placed at home
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-          {remainingMockups.map((piece, index) => {
-            const ratio = piece.width / piece.height;
-            const backgroundIndex =
-              ratio > 1.25
-                ? index % 2 === 0
-                  ? 1
-                  : 2
-                : ratio < 0.68
-                  ? index % 2 === 0
-                    ? 0
-                    : 3
-                  : index % roomBackgrounds.length;
-            const frame =
-              index % 3 === 0
-                ? "border-[6px] border-[#242321]"
-                : index % 3 === 1
-                  ? "border-[7px] border-[#e2ddd3]"
-                  : "border-[6px] border-[#73583e]";
-
-            return (
-              <ZoomableMockup
-                key={`interior-${piece.slug}`}
-                background={roomBackgrounds[backgroundIndex]}
-                alt={`Commissioned artwork by Komal Hira, piece ${index + 1}`}
-                artwork={{
-                  src: piece.image,
-                  width: piece.width,
-                  height: piece.height,
-                  displayAspect:
-                    piece.slug === "commission-03" ? 0.81 : undefined,
-                  objectPosition:
-                    piece.slug === "commission-03" ? "50% 42%" : undefined,
-                }}
-                frameClassName={frame}
-              />
-            );
-          })}
         </div>
       </div>
 
