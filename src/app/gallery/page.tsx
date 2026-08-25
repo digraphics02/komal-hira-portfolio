@@ -40,8 +40,9 @@ export default function GalleryPage() {
           The full collection
         </h1>
         <p className="mt-4 text-[var(--ink-soft)]">
-          {paintings.length} paintings in oil on canvas. Select any piece for
-          a full view, medium, and dimensions.
+          {paintings.length} paintings in oil on canvas, spanning solo
+          compositions and diptychs from 2022 to 2024. Select any piece for a
+          full view, medium, and dimensions.
         </p>
       </header>
 
