@@ -31,6 +31,8 @@ export const skillset = [
   "Sculpture",
   "Mix Media",
   "Mosaic",
+  "Baking",
+  "Doll Painting",
 ];
 
 export const commissions = [
