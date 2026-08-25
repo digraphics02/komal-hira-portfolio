@@ -45,9 +45,6 @@ export default function SiteFooter() {
           <Link href="/gallery/" className="hover:text-[var(--accent)]">
             Gallery
           </Link>
-          <Link href="/commissions/" className="hover:text-[var(--accent)]">
-            Commissions
-          </Link>
           <Link href="/about/" className="hover:text-[var(--accent)]">
             About
           </Link>
