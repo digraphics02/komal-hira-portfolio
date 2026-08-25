@@ -75,6 +75,22 @@ export default function CustomCursor() {
       );
     };
 
+    const clearCanvas = () => {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    };
+
+    const onClick = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      brushX = targetX;
+      brushY = targetY;
+      clearCanvas();
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") clearCanvas();
+    };
+
     const clamp = (value: number, min: number, max: number) =>
       Math.min(max, Math.max(min, value));
 
@@ -115,6 +131,8 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
+    window.addEventListener("click", onClick);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     raf = requestAnimationFrame(loop);
 
     return () => {
@@ -123,6 +141,8 @@ export default function CustomCursor() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("click", onClick);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       cancelAnimationFrame(raf);
     };
   }, []);
