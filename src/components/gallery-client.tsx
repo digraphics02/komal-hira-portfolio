@@ -74,8 +74,9 @@ export default function GalleryClient({
                 {painting.title}
               </h3>
               <p className="text-sm text-[var(--ink-soft)]">
-                {painting.medium} · {painting.dimensions}
-                {painting.year ? ` · ${painting.year}` : ""}
+                {[painting.medium, painting.dimensions, painting.year]
+                  .filter(Boolean)
+                  .join(" · ")}
               </p>
             </div>
           </button>
@@ -140,8 +141,9 @@ export default function GalleryClient({
             <div className="text-center text-white">
               <h3 className="font-display text-2xl">{active.title}</h3>
               <p className="mt-1 text-sm text-white/70">
-                {active.medium} · {active.dimensions}
-                {active.year ? ` · ${active.year}` : ""}
+                {[active.medium, active.dimensions, active.year]
+                  .filter(Boolean)
+                  .join(" · ")}
               </p>
               {active.collection && (
                 <p className="mt-1 text-xs uppercase tracking-wide text-white/50">

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-const hero = paintings.find((p) => p.slug === "redolence");
+const hero = paintings[0];
 
 export default function HomePage() {
   return (
