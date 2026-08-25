@@ -34,11 +34,25 @@ const accents = [
   "#3f8fbf",
 ];
 
+const overrides: Record<
+  string,
+  Partial<Pick<Painting, "title" | "medium" | "dimensions" | "alt">>
+> = {
+  "gallery-01": {
+    title: "The Beginning",
+    medium: "Oil on canvas, diptych",
+    dimensions: '22.5 x 15" (approx.)',
+    alt: "The Beginning, an oil-on-canvas diptych by Komal Hira",
+  },
+};
+
 export const paintings: Painting[] = Array.from({ length: 19 }, (_, i) => {
   const n = i + 1;
   const padded = String(n).padStart(2, "0");
+  const slug = `gallery-${padded}`;
+  const override = overrides[slug];
   return {
-    slug: `gallery-${padded}`,
+    slug,
     title: "Untitled",
     medium: "Oil on canvas",
     dimensions: "",
@@ -47,6 +61,7 @@ export const paintings: Painting[] = Array.from({ length: 19 }, (_, i) => {
     height: 2117,
     alt: `Untitled oil painting by Komal Hira, piece ${n}`,
     accent: accents[i % accents.length],
+    ...override,
   };
 });
 
