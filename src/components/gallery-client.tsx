@@ -73,11 +73,6 @@ export default function GalleryClient({
               <h3 className="font-display text-lg text-[var(--ink)]">
                 {painting.title}
               </h3>
-              <p className="text-sm text-[var(--ink-soft)]">
-                {[painting.medium, painting.dimensions, painting.year]
-                  .filter(Boolean)
-                  .join(" · ")}
-              </p>
             </div>
           </button>
         ))}
