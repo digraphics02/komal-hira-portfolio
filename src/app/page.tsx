@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-const hero = paintings[0];
+const hero = paintings.find((p) => p.title === "Redolence") ?? paintings[0];
 
 export default function HomePage() {
   return (
