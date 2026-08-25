@@ -113,16 +113,26 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl text-[var(--ink)]">
               Skillset
             </h2>
-            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
-              {skillset.map((skill) => (
-                <li
-                  key={skill}
-                  className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+            <div className="mt-6 grid gap-x-6 sm:grid-cols-2">
+              {[
+                skillset.slice(0, Math.ceil(skillset.length / 2)),
+                skillset.slice(Math.ceil(skillset.length / 2)),
+              ].map((column, colIndex) => (
+                <ul
+                  key={colIndex}
+                  className="ml-1 space-y-1 border-l-2 border-[var(--line)]"
                 >
-                  {skill}
-                </li>
+                  {column.map((skill) => (
+                    <li
+                      key={skill}
+                      className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
               ))}
-            </ul>
+            </div>
 
             <h2 className="font-display mt-10 text-2xl text-[var(--ink)]">
               Professional experience
