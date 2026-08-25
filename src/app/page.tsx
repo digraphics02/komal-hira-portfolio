@@ -57,7 +57,7 @@ export default function HomePage() {
               href="/about/"
               className="rounded-full border border-[var(--line)] px-6 py-3 text-sm uppercase tracking-widest text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
-              Artist CV
+              About Artist
             </Link>
           </div>
         </Reveal>
