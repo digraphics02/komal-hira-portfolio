@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { CommissionPiece } from "@/lib/commissions";
 
 export default function CommissionGalleryClient({
@@ -42,6 +42,24 @@ export default function CommissionGalleryClient({
   }, [activeIndex, close, showPrev, showNext]);
 
   const active = activeIndex === null ? null : pieces[activeIndex];
+
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStart.current.x;
+    const dy = t.clientY - touchStart.current.y;
+    touchStart.current = null;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx < 0) showNext();
+    else showPrev();
+  };
 
   return (
     <>
@@ -88,6 +106,8 @@ export default function CommissionGalleryClient({
           aria-label="Commission piece — full view"
           className="animate-modal-in fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
           onClick={close}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           <button
             type="button"
