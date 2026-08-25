@@ -2,9 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
+function hexToRgb(hex: string): [number, number, number] {
+  const clean = hex.trim().replace("#", "");
+  const full =
+    clean.length === 3
+      ? clean
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : clean;
+  const num = parseInt(full, 16);
+  return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+}
+
 export default function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
@@ -13,36 +25,91 @@ export default function CustomCursor() {
     ).matches;
     if (!finePointer || reducedMotion) return;
 
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+
     document.documentElement.classList.add("custom-cursor");
 
-    const dot = dotRef.current;
-    const ring = ringRef.current;
-    if (!dot || !ring) return;
+    let rgb = hexToRgb(
+      getComputedStyle(document.documentElement).getPropertyValue("--accent"),
+    );
+    const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncColor = () => {
+      rgb = hexToRgb(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--accent",
+        ),
+      );
+    };
+    darkQuery.addEventListener("change", syncColor);
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let brushX = targetX;
+    let brushY = targetY;
+    let hovering = false;
     let raf = 0;
 
     const onMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      targetX = e.clientX;
+      targetY = e.clientY;
     };
 
     const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const hoverable = target.closest(
-        'a, button, [role="button"], input, textarea',
+      hovering = Boolean(
+        target.closest('a, button, [role="button"], input, textarea'),
       );
-      ring.classList.toggle("is-hovering", Boolean(hoverable));
     };
 
+    const clamp = (value: number, min: number, max: number) =>
+      Math.min(max, Math.max(min, value));
+
     const loop = () => {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.055)";
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = "source-over";
+
+      const prevX = brushX;
+      const prevY = brushY;
+      brushX += (targetX - brushX) * 0.22;
+      brushY += (targetY - brushY) * 0.22;
+
+      const speed = Math.hypot(brushX - prevX, brushY - prevY);
+      const width = clamp(20 - speed * 0.9, 5, 20) * (hovering ? 1.5 : 1);
+      const [r, g, b] = rgb;
+
+      ctx.beginPath();
+      ctx.moveTo(prevX, prevY);
+      ctx.lineTo(brushX, brushY);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = width;
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${hovering ? 0.42 : 0.28})`;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(targetX, targetY, hovering ? 5 : 3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.9)`;
+      ctx.fill();
+
       raf = requestAnimationFrame(loop);
     };
 
@@ -52,16 +119,13 @@ export default function CustomCursor() {
 
     return () => {
       document.documentElement.classList.remove("custom-cursor");
+      darkQuery.removeEventListener("change", syncColor);
+      window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       cancelAnimationFrame(raf);
     };
   }, []);
 
-  return (
-    <>
-      <div ref={dotRef} className="cursor-dot" />
-      <div ref={ringRef} className="cursor-ring" />
-    </>
-  );
+  return <canvas ref={canvasRef} className="cursor-canvas" aria-hidden="true" />;
 }

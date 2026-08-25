@@ -241,42 +241,13 @@ html.custom-cursor * {
   cursor: none !important;
 }
 
-.cursor-dot,
-.cursor-ring {
+.cursor-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 200;
   pointer-events: none;
-  border-radius: 9999px;
-  will-change: transform;
-}
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--accent);
-  opacity: 0.6;
-  transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    opacity 0.2s ease,
-    background-color 0.2s ease;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.cursor-ring.is-hovering {
-  width: 56px;
-  height: 56px;
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-  opacity: 0.9;
+  width: 100vw;
+  height: 100vh;
 }
 
 /* Underline sweep for nav links */
@@ -335,8 +306,7 @@ html.custom-cursor * {
   html.custom-cursor * {
     cursor: auto !important;
   }
-  .cursor-dot,
-  .cursor-ring {
+  .cursor-canvas {
     display: none;
   }
 }
