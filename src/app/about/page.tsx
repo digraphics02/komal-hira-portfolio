@@ -113,11 +113,11 @@ export default function AboutPage() {
             <h2 className="font-display text-2xl text-[var(--ink)]">
               Skillset
             </h2>
-            <ul className="mt-5 flex flex-wrap gap-2">
+            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
               {skillset.map((skill) => (
                 <li
                   key={skill}
-                  className="cursor-default rounded-full border border-[var(--line)] px-4 py-1.5 text-sm text-[var(--ink-soft)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)] hover:shadow-sm"
+                  className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
                 >
                   {skill}
                 </li>
@@ -127,13 +127,12 @@ export default function AboutPage() {
             <h2 className="font-display mt-10 text-2xl text-[var(--ink)]">
               Professional experience
             </h2>
-            <ul className="mt-5 space-y-1">
+            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
               {professionalExperience.map((item) => (
                 <li
                   key={item}
-                  className="-ml-3 flex gap-3 rounded-lg px-3 py-2 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors hover:bg-[var(--bg-alt)]"
+                  className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
                 >
-                  <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--accent)]" />
                   {item}
                 </li>
               ))}
