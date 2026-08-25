@@ -81,78 +81,80 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      <div className="mt-16 grid gap-16 md:grid-cols-2">
-        <Reveal>
-          <div>
-            <h2 className="font-display text-2xl text-[var(--ink)]">
-              Education
-            </h2>
-            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
-              {education.map((item) => (
-                <li
-                  key={`${item.school}-${item.period}`}
-                  className="relative -ml-px rounded-r-lg py-3 pl-6 transition-colors before:absolute before:-left-[7px] before:top-[1.35rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
-                >
-                  <p className="font-medium text-[var(--ink)]">
-                    {item.credential}
-                  </p>
-                  <p className="text-sm text-[var(--ink-soft)]">
-                    {item.school}
-                  </p>
-                  <p className="text-xs uppercase tracking-wide text-[var(--accent)]">
-                    {item.period}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <div>
-            <h2 className="font-display text-2xl text-[var(--ink)]">
-              Skillset
-            </h2>
-            <div className="mt-6 grid gap-x-6 sm:grid-cols-2">
-              {[
-                skillset.slice(0, Math.ceil(skillset.length / 2)),
-                skillset.slice(Math.ceil(skillset.length / 2)),
-              ].map((column, colIndex) => (
-                <ul
-                  key={colIndex}
-                  className="ml-1 space-y-1 border-l-2 border-[var(--line)]"
-                >
-                  {column.map((skill) => (
-                    <li
-                      key={skill}
-                      className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-
-            <h2 className="font-display mt-10 text-2xl text-[var(--ink)]">
-              Professional experience
-            </h2>
-            <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
-              {professionalExperience.map((item) => (
-                <li
-                  key={item}
-                  className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-      </div>
+      <Reveal>
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
+          <h2 className="font-display text-2xl text-[var(--ink)]">
+            Education
+          </h2>
+          <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
+            {education.map((item) => (
+              <li
+                key={`${item.school}-${item.period}`}
+                className="relative -ml-px rounded-r-lg py-3 pl-6 transition-colors before:absolute before:-left-[7px] before:top-[1.35rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+              >
+                <p className="font-medium text-[var(--ink)]">
+                  {item.credential}
+                </p>
+                <p className="text-sm text-[var(--ink-soft)]">
+                  {item.school}
+                </p>
+                <p className="text-xs uppercase tracking-wide text-[var(--accent)]">
+                  {item.period}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
 
       <Reveal>
-        <div className="mt-16">
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
+          <h2 className="font-display text-2xl text-[var(--ink)]">
+            Professional experience
+          </h2>
+          <ul className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
+            {professionalExperience.map((item) => (
+              <li
+                key={item}
+                className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
+          <h2 className="font-display text-2xl text-[var(--ink)]">
+            Skillset
+          </h2>
+          <div className="mt-6 grid gap-x-6 sm:grid-cols-2">
+            {[
+              skillset.slice(0, Math.ceil(skillset.length / 2)),
+              skillset.slice(Math.ceil(skillset.length / 2)),
+            ].map((column, colIndex) => (
+              <ul
+                key={colIndex}
+                className="ml-1 space-y-1 border-l-2 border-[var(--line)]"
+              >
+                {column.map((skill) => (
+                  <li
+                    key={skill}
+                    className="relative -ml-px rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed text-[var(--ink-soft)] transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 className="font-display text-2xl text-[var(--ink)]">
@@ -185,49 +187,47 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      <div className="mt-16 grid gap-16 md:grid-cols-2">
-        <Reveal>
-          <div>
-            <h2 className="font-display text-2xl text-[var(--ink)]">
-              Exhibitions
-            </h2>
-            <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
-              {exhibitions.map((item, i) => (
-                <li
-                  key={`${item.year}-${i}`}
-                  className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
-                >
-                  <span className="w-12 flex-none font-medium text-[var(--accent)]">
-                    {item.year}
-                  </span>
-                  <span className="text-[var(--ink-soft)]">{item.detail}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
+      <Reveal>
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
+          <h2 className="font-display text-2xl text-[var(--ink)]">
+            Exhibitions
+          </h2>
+          <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
+            {exhibitions.map((item, i) => (
+              <li
+                key={`${item.year}-${i}`}
+                className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+              >
+                <span className="w-12 flex-none font-medium text-[var(--accent)]">
+                  {item.year}
+                </span>
+                <span className="text-[var(--ink-soft)]">{item.detail}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Reveal>
 
-        <Reveal delay={80}>
-          <div>
-            <h2 className="font-display text-2xl text-[var(--ink)]">
-              Workshops &amp; certifications
-            </h2>
-            <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
-              {certifications.map((item, i) => (
-                <li
-                  key={`${item.year}-${i}`}
-                  className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
-                >
-                  <span className="w-12 flex-none font-medium text-[var(--accent)]">
-                    {item.year}
-                  </span>
-                  <span className="text-[var(--ink-soft)]">{item.detail}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
-      </div>
+      <Reveal>
+        <div className="mt-16 border-t border-[var(--line)]/70 pt-16">
+          <h2 className="font-display text-2xl text-[var(--ink)]">
+            Workshops &amp; certifications
+          </h2>
+          <ol className="mt-6 ml-1 space-y-1 border-l-2 border-[var(--line)]">
+            {certifications.map((item, i) => (
+              <li
+                key={`${item.year}-${i}`}
+                className="relative -ml-px flex gap-4 rounded-r-lg py-2.5 pl-6 text-sm leading-relaxed transition-colors before:absolute before:-left-[7px] before:top-[1.05rem] before:h-3 before:w-3 before:rounded-full before:bg-[var(--accent)] before:ring-4 before:ring-[var(--bg)] hover:bg-[var(--bg-alt)]"
+              >
+                <span className="w-12 flex-none font-medium text-[var(--accent)]">
+                  {item.year}
+                </span>
+                <span className="text-[var(--ink-soft)]">{item.detail}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Reveal>
     </section>
   );
 }
