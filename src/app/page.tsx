@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
 };
 
-const hero = paintings.find((p) => p.slug === "redolence")!;
+const hero = paintings.find((p) => p.slug === "redolence");
 
 export default function HomePage() {
   return (
@@ -62,25 +62,27 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        <div
-          className="relative flex items-center justify-center rounded-[2rem] border border-[var(--line)]/70 p-8 sm:p-12"
-          style={{
-            background: `radial-gradient(circle at 30% 20%, ${hero.accent}33, var(--bg-alt))`,
-          }}
-        >
-          <div className="animate-float w-full max-w-md">
-            <Image
-              src={hero.image}
-              alt={hero.alt}
-              width={hero.width}
-              height={hero.height}
-              sizes="(max-width: 1024px) 80vw, 40vw"
-              preload
-              quality={85}
-              className="h-auto w-full drop-shadow-2xl"
-            />
+        {hero && (
+          <div
+            className="relative flex items-center justify-center rounded-[2rem] border border-[var(--line)]/70 p-8 sm:p-12"
+            style={{
+              background: `radial-gradient(circle at 30% 20%, ${hero.accent}33, var(--bg-alt))`,
+            }}
+          >
+            <div className="animate-float w-full max-w-md">
+              <Image
+                src={hero.image}
+                alt={hero.alt}
+                width={hero.width}
+                height={hero.height}
+                sizes="(max-width: 1024px) 80vw, 40vw"
+                preload
+                quality={85}
+                className="h-auto w-full drop-shadow-2xl"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       <Marquee items={skillset} />

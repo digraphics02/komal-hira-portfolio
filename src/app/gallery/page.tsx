@@ -5,7 +5,7 @@ import GalleryClient from "@/components/gallery-client";
 import { paintings } from "@/lib/paintings";
 import { siteConfig } from "@/lib/site-config";
 
-const title = "Gallery — 23 Original Oil Paintings by Komal Hira";
+const title = "Gallery — Original Oil Paintings by Komal Hira";
 const description =
   "Browse the full collection of Komal Hira's oil-on-canvas paintings: abstract biomorphic assemblages, diptychs, and pieces held in permanent hotel collections.";
 
