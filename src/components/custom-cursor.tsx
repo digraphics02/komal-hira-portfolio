@@ -83,14 +83,14 @@ export default function CustomCursor() {
       const h = window.innerHeight;
 
       ctx.globalCompositeOperation = "destination-out";
-      ctx.fillStyle = "rgba(0, 0, 0, 0.055)";
+      ctx.fillStyle = "rgba(0, 0, 0, 0.14)";
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = "source-over";
 
       const prevX = brushX;
       const prevY = brushY;
-      brushX += (targetX - brushX) * 0.22;
-      brushY += (targetY - brushY) * 0.22;
+      brushX += (targetX - brushX) * 0.32;
+      brushY += (targetY - brushY) * 0.32;
 
       const speed = Math.hypot(brushX - prevX, brushY - prevY);
       const width = clamp(20 - speed * 0.9, 5, 20) * (hovering ? 1.5 : 1);
